@@ -1,0 +1,467 @@
+# https://leetcode.com/problems/<-----{problem-slug}----->/
+
+query globalData {
+  userStatus {
+    userId
+    isSignedIn
+    isMockUser
+    isPremium
+    isVerified
+    username
+    avatar
+    isAdmin
+    isSuperuser
+    permissions
+    isTranslator
+    activeSessionId
+    checkedInToday
+    notificationStatus {
+      lastModified
+      numUnread
+    }
+  }
+}
+-----------------------------------------------------------------------------------
+
+query studyPlanV2RecentCompletedProgress($planSlug: String!) {
+  studyPlanV2RecentCompletedProgress(planSlug: $planSlug) {
+    id
+    status
+  }
+}
+{"planSlug": ""}
+-----------------------------------------------------------------------------------
+
+query tabsStatus($titleSlug: String!) {
+  questionTopicsList(questionSlug: $titleSlug) {
+    totalNum
+  }
+  questionDiscussionTopic(questionSlug: $titleSlug) {
+    topLevelCommentCount
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query questionTitle($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    questionId
+    questionFrontendId
+    title
+    titleSlug
+    isPaidOnly
+    difficulty
+    likes
+    dislikes
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query premiumQuestion($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    isPaidOnly
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query SimilarQuestions($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    similarQuestionList {
+      difficulty
+      titleSlug
+      title
+      translatedTitle
+      isPaidOnly
+    }
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query singleQuestionTopicTags($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    topicTags {
+      name
+      slug
+    }
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query userCanSeeQuestion($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    canSeeQuestion
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query consolePanelConfig($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    questionId
+    questionFrontendId
+    questionTitle
+    enableDebugger
+    enableRunCode
+    enableSubmit
+    enableTestMode
+    exampleTestcaseList
+    metaData
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query questionEditorData($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    questionId
+    questionFrontendId
+    codeSnippets {
+      lang
+      langSlug
+      code
+    }
+    envInfo
+    enableRunCode
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query languageList {
+  languageList {
+    id
+    name
+  }
+}
+-----------------------------------------------------------------------------------
+
+query SurveyV2($surveySlug: String!) {
+  surveyV2(surveySlug: $surveySlug) {
+    showSurvey
+    surveyJson
+    leetcoinAmount
+  }
+}
+{"surveySlug": "javascript_problem_survey"}
+-----------------------------------------------------------------------------------
+
+query qdFeatureGuide {
+  userStatus {
+    completedFeatureGuides
+    isSignedIn
+  }
+}
+-----------------------------------------------------------------------------------
+
+query annualReport {
+  userStatus {
+    annualReport {
+      showPopup
+      content
+      badge {
+        displayName
+        medal {
+          slug
+          config {
+            iconGif
+          }
+        }
+      }
+    }
+  }
+}
+-----------------------------------------------------------------------------------
+
+query questionContent($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    content
+    mysqlSchemas
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query qdChallengeQuestion($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    challengeQuestion {
+      id
+      date
+      incompleteChallengeCount
+      streakCount
+      type
+    }
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query learningContextName($currentQuestionSlug: String!, $envId: String, $envType: String) {
+  learningContextV2(
+    currentQuestionSlug: $currentQuestionSlug
+    envId: $envId
+    envType: $envType
+    needQuestion: false
+  ) {
+    name
+  }
+}
+{"currentQuestionSlug": "two-sum", "filters": {}, "envId": "", "envType": "problem-list"}
+-----------------------------------------------------------------------------------
+
+query getStreakCounter {
+  streakCounter {
+    streakCount
+    daysSkipped
+    currentDayCompleted
+  }
+}
+-----------------------------------------------------------------------------------
+
+query currentTimestamp {
+  currentTimestamp
+}
+-----------------------------------------------------------------------------------
+
+query questionOfToday {
+  activeDailyCodingChallengeQuestion {
+    date
+    userStatus
+    link
+    question {
+      acRate
+      difficulty
+      freqBar
+      frontendQuestionId: questionFrontendId
+      isFavor
+      paidOnly: isPaidOnly
+      status
+      title
+      titleSlug
+      hasVideoSolution
+      hasSolution
+      topicTags {
+        name
+        id
+        slug
+      }
+    }
+  }
+}
+-----------------------------------------------------------------------------------
+
+query questionHints($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    hints
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query userQuestionStatus($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    status
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query userQuestionLike($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    isLiked
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query userFavorites {
+  favoritesLists {
+    allFavorites {
+      idHash
+      name
+      isPublicFavorite
+      questions {
+        titleSlug
+      }
+    }
+  }
+}
+-----------------------------------------------------------------------------------
+
+query questionStats($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    stats
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query userQuestionAdminUrls($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    libraryUrl
+    adminUrl
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query questionCompanyStats($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    companyTagStats
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query discussionTopic($questionSlug: String!) {
+  questionDiscussionTopic(questionSlug: $questionSlug) {
+    id
+    commentCount
+    topLevelCommentCount
+  }
+}
+{"questionSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query enableAiHelper {
+  feature {
+    enableAiHelper
+  }
+}
+-----------------------------------------------------------------------------------
+
+query debuggerLanguageFeatures {
+  debuggerLanguageFeatures {
+    lang {
+      name
+    }
+    supportsExpressions
+    supportsDisablingBreakpoints
+    supportsDebugging
+  }
+}
+-----------------------------------------------------------------------------------
+
+query editorialMeta($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    solution {
+      paidOnly
+      hasVideoSolution
+      canSeeDetail
+    }
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query hasOfficialSolution($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    solution {
+      id
+    }
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query syncedCode($questionId: Int!, $lang: Int!) {
+  syncedCode(questionId: $questionId, lang: $lang) {
+    timestamp
+    code
+  }
+}
+{"lang": 11, "questionId": 1}
+-----------------------------------------------------------------------------------
+
+query codingChallengeMedal($year: Int!, $month: Int!) {
+  dailyChallengeMedal(year: $year, month: $month) {
+    name
+    config {
+      icon
+    }
+  }
+}
+{"year": 2023, "month": 7}
+-----------------------------------------------------------------------------------
+
+query questionNote($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    questionId
+    note
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query learningContext($currentQuestionSlug: String!, $categorySlug: String, $envId: String, $envType: String, $filters: QuestionListFilterInput) {
+  learningContextV2(
+    currentQuestionSlug: $currentQuestionSlug
+    categorySlug: $categorySlug
+    envId: $envId
+    envType: $envType
+    filters: $filters
+  ) {
+    name
+    backLink
+    nextQuestion {
+      difficulty
+      title
+      titleSlug
+      questionFrontendId
+    }
+    previousQuestion {
+      difficulty
+      title
+      titleSlug
+      questionFrontendId
+    }
+  }
+}
+{"currentQuestionSlug": "two-sum", "filters": {}, "envId": "", "envType": "problem-list"}
+-----------------------------------------------------------------------------------
+
+query randomPanelQuestion($currentQuestionSlug: String!, $categorySlug: String, $envId: String, $envType: String, $filters: QuestionListFilterInput) {
+  randomPanelQuestion(
+    currentQuestionSlug: $currentQuestionSlug
+    categorySlug: $categorySlug
+    envId: $envId
+    envType: $envType
+    filters: $filters
+  )
+}
+{"currentQuestionSlug": "two-sum", "filters": {}, "envId": "", "envType": "problem-list"}
+-----------------------------------------------------------------------------------
+
+query panelQuestionList($currentQuestionSlug: String!, $categorySlug: String, $envId: String, $envType: String, $filters: QuestionListFilterInput) {
+  panelQuestionList(
+    currentQuestionSlug: $currentQuestionSlug
+    categorySlug: $categorySlug
+    envId: $envId
+    envType: $envType
+    filters: $filters
+  ) {
+    hasViewPermission
+    panelName
+    finishedLength
+    totalLength
+    questions {
+      difficulty
+      id
+      paidOnly
+      questionFrontendId
+      status
+      title
+      titleSlug
+      topicTags {
+        name
+        slug
+      }
+    }
+  }
+}
+{"currentQuestionSlug": "two-sum", "filters": {}, "envId": "", "envType": "problem-list"}
+-----------------------------------------------------------------------------------
+
