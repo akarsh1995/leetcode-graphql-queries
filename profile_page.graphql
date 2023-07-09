@@ -1,0 +1,278 @@
+query globalData {
+  userStatus {
+    userId
+    isSignedIn
+    isMockUser
+    isPremium
+    isVerified
+    username
+    avatar
+    isAdmin
+    isSuperuser
+    permissions
+    isTranslator
+    activeSessionId
+    checkedInToday
+    notificationStatus {
+      lastModified
+      numUnread
+    }
+  }
+}
+-----------------------------------------------------------------------------------
+
+query siteAnnouncements {
+  siteAnnouncements {
+    title
+    content
+    blacklistUrls
+    whitelistUrls
+    navbarItem
+  }
+}
+-----------------------------------------------------------------------------------
+
+query userPublicProfile($username: String!) {
+  matchedUser(username: $username) {
+    contestBadge {
+      name
+      expired
+      hoverText
+      icon
+    }
+    username
+    githubUrl
+    twitterUrl
+    linkedinUrl
+    profile {
+      ranking
+      userAvatar
+      realName
+      aboutMe
+      school
+      websites
+      countryName
+      company
+      jobTitle
+      skillTags
+      postViewCount
+      postViewCountDiff
+      reputation
+      reputationDiff
+      solutionCount
+      solutionCountDiff
+      categoryDiscussCount
+      categoryDiscussCountDiff
+    }
+  }
+}
+{"username": "user8162l"}
+-----------------------------------------------------------------------------------
+
+query languageStats($username: String!) {
+  matchedUser(username: $username) {
+    languageProblemCount {
+      languageName
+      problemsSolved
+    }
+  }
+}
+{"username": "user8162l"}
+-----------------------------------------------------------------------------------
+
+query skillStats($username: String!) {
+  matchedUser(username: $username) {
+    tagProblemCounts {
+      advanced {
+        tagName
+        tagSlug
+        problemsSolved
+      }
+      intermediate {
+        tagName
+        tagSlug
+        problemsSolved
+      }
+      fundamental {
+        tagName
+        tagSlug
+        problemsSolved
+      }
+    }
+  }
+}
+{"username": "user8162l"}
+-----------------------------------------------------------------------------------
+
+query userContestRankingInfo($username: String!) {
+  userContestRanking(username: $username) {
+    attendedContestsCount
+    rating
+    globalRanking
+    totalParticipants
+    topPercentage
+    badge {
+      name
+    }
+  }
+  userContestRankingHistory(username: $username) {
+    attended
+    trendDirection
+    problemsSolved
+    totalProblems
+    finishTimeInSeconds
+    rating
+    ranking
+    contest {
+      title
+      startTime
+    }
+  }
+}
+{"username": "user8162l"}
+-----------------------------------------------------------------------------------
+
+query userProblemsSolved($username: String!) {
+  allQuestionsCount {
+    difficulty
+    count
+  }
+  matchedUser(username: $username) {
+    problemsSolvedBeatsStats {
+      difficulty
+      percentage
+    }
+    submitStatsGlobal {
+      acSubmissionNum {
+        difficulty
+        count
+      }
+    }
+  }
+}
+{"username": "user8162l"}
+-----------------------------------------------------------------------------------
+
+query userBadges($username: String!) {
+  matchedUser(username: $username) {
+    badges {
+      id
+      name
+      shortName
+      displayName
+      icon
+      hoverText
+      medal {
+        slug
+        config {
+          iconGif
+          iconGifBackground
+        }
+      }
+      creationDate
+      category
+    }
+    upcomingBadges {
+      name
+      icon
+      progress
+    }
+  }
+}
+{"username": "user8162l"}
+-----------------------------------------------------------------------------------
+
+query userProfileCalendar($username: String!, $year: Int) {
+  matchedUser(username: $username) {
+    userCalendar(year: $year) {
+      activeYears
+      streak
+      totalActiveDays
+      dccBadges {
+        timestamp
+        badge {
+          name
+          icon
+        }
+      }
+      submissionCalendar
+    }
+  }
+}
+{"username": "user8162l"}
+-----------------------------------------------------------------------------------
+
+query recentAcSubmissions($username: String!, $limit: Int!) {
+  recentAcSubmissionList(username: $username, limit: $limit) {
+    id
+    title
+    titleSlug
+    timestamp
+  }
+}
+{"username": "user8162l", "limit": 15}
+-----------------------------------------------------------------------------------
+
+query getStreakCounter {
+  streakCounter {
+    streakCount
+    daysSkipped
+    currentDayCompleted
+  }
+}
+-----------------------------------------------------------------------------------
+
+query currentTimestamp {
+  currentTimestamp
+}
+-----------------------------------------------------------------------------------
+
+query questionOfToday {
+  activeDailyCodingChallengeQuestion {
+    date
+    userStatus
+    link
+    question {
+      acRate
+      difficulty
+      freqBar
+      frontendQuestionId: questionFrontendId
+      isFavor
+      paidOnly: isPaidOnly
+      status
+      title
+      titleSlug
+      hasVideoSolution
+      hasSolution
+      topicTags {
+        name
+        id
+        slug
+      }
+    }
+  }
+}
+-----------------------------------------------------------------------------------
+
+query codingChallengeMedal($year: Int!, $month: Int!) {
+  dailyChallengeMedal(year: $year, month: $month) {
+    name
+    config {
+      icon
+    }
+  }
+}
+{"year": 2023, "month": 7}
+-----------------------------------------------------------------------------------
+
+query getUserProfile($username: String!) {
+  matchedUser(username: $username) {
+    activeBadge {
+      displayName
+      icon
+    }
+  }
+}
+{"username": "user8162l"}
+-----------------------------------------------------------------------------------
+
