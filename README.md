@@ -13,7 +13,7 @@ curl --location 'https://leetcode.com/graphql/' \
 --data '{"query":"query problemsetQuestionList($categorySlug: String, $limit: Int, $skip: Int, $filters: QuestionListFilterInput) {\n  problemsetQuestionList: questionList(\n    categorySlug: $categorySlug\n    limit: $limit\n    skip: $skip\n    filters: $filters\n  ) {\n    total: totalNum\n    questions: data {\n      acRate\n      difficulty\n      freqBar\n      frontendQuestionId: questionFrontendId\n      isFavor\n      paidOnly: isPaidOnly\n      status\n      title\n      titleSlug\n      topicTags {\n        name\n        id\n        slug\n      }\n      hasSolution\n      hasVideoSolution\n    }\n  }\n}","variables":{"categorySlug":"","skip":0,"limit":50,"filters":{}}}'
 ```
 
-> **Note:**: For authenticated requests make sure you add `LEETCODE_SESSION` and `csrftoken` cookies with the request.
+> **Note:** For authenticated requests make sure you add `LEETCODE_SESSION` and `csrftoken` cookies with the request.
 
 ### Repo contains two types of files
 
@@ -53,5 +53,4 @@ query problemsetQuestionList($categorySlug: String, $limit: Int, $skip: Int, $fi
 {"categorySlug": "", "skip": 0, "limit": 50, "filters": {}}
 ```
 
-
-
+![Postman Leetcode Collection Screenshot](./screenshots/postman_screenshot.png)
