@@ -210,6 +210,7 @@ query learningContextName($currentQuestionSlug: String!, $envId: String, $envTyp
   }
 }
 {"currentQuestionSlug": "two-sum", "filters": {}, "envId": "", "envType": "problem-list"}
+{"envType": "", "envId": "", "currentQuestionSlug": "two-sum"}
 -----------------------------------------------------------------------------------
 
 query getStreakCounter {
@@ -326,6 +327,15 @@ query discussionTopic($questionSlug: String!) {
 {"questionSlug": "two-sum"}
 -----------------------------------------------------------------------------------
 
+query syncedCode($questionId: Int!, $lang: Int!) {
+  syncedCode(questionId: $questionId, lang: $lang) {
+    timestamp
+    code
+  }
+}
+{"lang": 11, "questionId": 34}
+-----------------------------------------------------------------------------------
+
 query enableAiHelper {
   feature {
     enableAiHelper
@@ -367,15 +377,6 @@ query hasOfficialSolution($titleSlug: String!) {
 {"titleSlug": "two-sum"}
 -----------------------------------------------------------------------------------
 
-query syncedCode($questionId: Int!, $lang: Int!) {
-  syncedCode(questionId: $questionId, lang: $lang) {
-    timestamp
-    code
-  }
-}
-{"lang": 11, "questionId": 1}
------------------------------------------------------------------------------------
-
 query codingChallengeMedal($year: Int!, $month: Int!) {
   dailyChallengeMedal(year: $year, month: $month) {
     name
@@ -387,10 +388,177 @@ query codingChallengeMedal($year: Int!, $month: Int!) {
 {"year": 2023, "month": 7}
 -----------------------------------------------------------------------------------
 
+query submissionList($offset: Int!, $limit: Int!, $lastKey: String, $questionSlug: String!, $lang: Int, $status: Int) {
+  questionSubmissionList(
+    offset: $offset
+    limit: $limit
+    lastKey: $lastKey
+    questionSlug: $questionSlug
+    lang: $lang
+    status: $status
+  ) {
+    lastKey
+    hasNext
+    submissions {
+      id
+      title
+      titleSlug
+      status
+      statusDisplay
+      lang
+      langName
+      runtime
+      timestamp
+      url
+      isPending
+      memory
+      hasNotes
+      notes
+    }
+  }
+}
+{"questionSlug": "two-sum", "offset": 0, "limit": 20, "lastKey": null}
+-----------------------------------------------------------------------------------
+
+query submissionFilterTypes {
+  submittableLanguageList {
+    id
+    verboseName
+  }
+  statusList {
+    id
+    name
+  }
+}
+-----------------------------------------------------------------------------------
+
 query questionNote($titleSlug: String!) {
   question(titleSlug: $titleSlug) {
     questionId
     note
+  }
+}
+{"titleSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query solutionTags($questionSlug: String!) {
+  solutionTopicTags(questionSlug: $questionSlug) {
+    name
+    slug
+    count
+  }
+  solutionLanguageTags(questionSlug: $questionSlug) {
+    name
+    slug
+    count
+  }
+}
+{"questionSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+query communitySolutions($questionSlug: String!, $skip: Int!, $first: Int!, $query: String, $orderBy: TopicSortingOption, $languageTags: [String!], $topicTags: [String!]) {
+  questionSolutions(
+    filters: {questionSlug: $questionSlug, skip: $skip, first: $first, query: $query, orderBy: $orderBy, languageTags: $languageTags, topicTags: $topicTags}
+  ) {
+    hasDirectResults
+    totalNum
+    solutions {
+      id
+      title
+      commentCount
+      topLevelCommentCount
+      viewCount
+      pinned
+      isFavorite
+      solutionTags {
+        name
+        slug
+      }
+      post {
+        id
+        status
+        voteCount
+        creationDate
+        isHidden
+        author {
+          username
+          isActive
+          nameColor
+          activeBadge {
+            displayName
+            icon
+          }
+          profile {
+            userAvatar
+            reputation
+          }
+        }
+      }
+      searchMeta {
+        content
+        contentType
+        commentAuthor {
+          username
+        }
+        replyAuthor {
+          username
+        }
+        highlights
+      }
+    }
+  }
+}
+{"query": "", "languageTags": [], "topicTags": [], "questionSlug": "two-sum", "skip": 30, "first": 15, "orderBy": "hot"}
+{"query": "", "languageTags": ["python3"], "topicTags": ["binary-search"], "questionSlug": "two-sum", "skip": 15, "first": 15, "orderBy": "hot"}
+{"query": "", "languageTags": [], "topicTags": [], "questionSlug": "two-sum", "skip": 15, "first": 15, "orderBy": "hot"}
+{"query": "", "languageTags": [], "topicTags": ["binary-search"], "questionSlug": "two-sum", "skip": 0, "first": 15, "orderBy": "hot"}
+{"query": "", "languageTags": [], "topicTags": [], "questionSlug": "two-sum", "skip": 0, "first": 15, "orderBy": "hot"}
+{"query": "", "languageTags": ["python3"], "topicTags": ["binary-search"], "questionSlug": "two-sum", "skip": 0, "first": 15, "orderBy": "hot"}
+-----------------------------------------------------------------------------------
+
+query officialSolution($titleSlug: String!) {
+  question(titleSlug: $titleSlug) {
+    solution {
+      id
+      title
+      content
+      contentTypeId
+      paidOnly
+      hasVideoSolution
+      paidOnlyVideo
+      canSeeDetail
+      rating {
+        count
+        average
+        userRating {
+          score
+        }
+      }
+      topic {
+        id
+        commentCount
+        topLevelCommentCount
+        viewCount
+        subscribed
+        solutionTags {
+          name
+          slug
+        }
+        post {
+          id
+          status
+          creationDate
+          author {
+            username
+            isActive
+            profile {
+              userAvatar
+              reputation
+            }
+          }
+        }
+      }
+    }
   }
 }
 {"titleSlug": "two-sum"}
@@ -421,6 +589,7 @@ query learningContext($currentQuestionSlug: String!, $categorySlug: String, $env
   }
 }
 {"currentQuestionSlug": "two-sum", "filters": {}, "envId": "", "envType": "problem-list"}
+{"envType": "", "envId": "", "currentQuestionSlug": "two-sum"}
 -----------------------------------------------------------------------------------
 
 query randomPanelQuestion($currentQuestionSlug: String!, $categorySlug: String, $envId: String, $envType: String, $filters: QuestionListFilterInput) {
@@ -433,6 +602,7 @@ query randomPanelQuestion($currentQuestionSlug: String!, $categorySlug: String, 
   )
 }
 {"currentQuestionSlug": "two-sum", "filters": {}, "envId": "", "envType": "problem-list"}
+{"envType": "", "envId": "", "currentQuestionSlug": "two-sum"}
 -----------------------------------------------------------------------------------
 
 query panelQuestionList($currentQuestionSlug: String!, $categorySlug: String, $envId: String, $envType: String, $filters: QuestionListFilterInput) {
@@ -463,5 +633,239 @@ query panelQuestionList($currentQuestionSlug: String!, $categorySlug: String, $e
   }
 }
 {"currentQuestionSlug": "two-sum", "filters": {}, "envId": "", "envType": "problem-list"}
+{"envType": "", "envId": "", "currentQuestionSlug": "two-sum"}
+-----------------------------------------------------------------------------------
+
+mutation updateSyncedCode($code: String!, $lang: Int!, $questionId: Int!) {
+  updateSyncedCode(code: $code, lang: $lang, questionId: $questionId) {
+    ok
+  }
+}
+{"code": "class Solution:\n    def searchRange(self, nums: List[int], target: int) -> List[int]:\n        return []", "lang": 11, "questionId": 34}
+{"code": "class Solution:\n    def searchRange(self, nums: List[int], target: int) -> List[int]:\n        return [1,2]", "lang": 11, "questionId": 34}
+-----------------------------------------------------------------------------------
+
+query questionSubmissionList($questionSlug: String!, $lang: Int, $withNote: Boolean, $limit: Int, $offset: Int, $status: Int) {
+  questionSubmissionList(
+    questionSlug: $questionSlug
+    offset: $offset
+    limit: $limit
+    lang: $lang
+    withNotes: $withNote
+    status: $status
+  ) {
+    lastKey
+    hasNext
+    submissions {
+      runtime
+      memory
+      timestamp
+      status
+      statusDisplay
+      lang
+      langName
+      timestamp
+      notes
+      id
+      hasNotes
+      topicTags {
+        id
+        name
+        slug
+        translatedName
+      }
+    }
+  }
+}
+{"questionSlug": "two-sum", "limit": 10, "offset": 0, "lang": 11, "withNote": true, "status": 10}
+-----------------------------------------------------------------------------------
+
+query submissionDetails($submissionId: Int!) {
+  submissionDetails(submissionId: $submissionId) {
+    runtime
+    runtimeDisplay
+    runtimePercentile
+    runtimeDistribution
+    memory
+    memoryDisplay
+    memoryPercentile
+    memoryDistribution
+    code
+    timestamp
+    statusCode
+    user {
+      username
+      profile {
+        realName
+        userAvatar
+      }
+    }
+    lang {
+      name
+      verboseName
+    }
+    question {
+      questionId
+    }
+    notes
+    topicTags {
+      tagId
+      slug
+      name
+    }
+    runtimeError
+    compileError
+    lastTestcase
+  }
+}
+{"submissionId": 989723806}
+-----------------------------------------------------------------------------------
+
+query communitySolution($topicId: Int!) {
+  topic(id: $topicId) {
+    id
+    viewCount
+    topLevelCommentCount
+    subscribed
+    title
+    pinned
+    solutionTags {
+      name
+      slug
+    }
+    hideFromTrending
+    commentCount
+    isFavorite
+    post {
+      id
+      voteCount
+      voteStatus
+      content
+      updationDate
+      creationDate
+      status
+      isHidden
+      author {
+        isDiscussAdmin
+        isDiscussStaff
+        username
+        nameColor
+        activeBadge {
+          displayName
+          icon
+        }
+        profile {
+          userAvatar
+          reputation
+        }
+        isActive
+      }
+      authorIsModerator
+      isOwnPost
+    }
+  }
+}
+{"topicId": 3678229}
+-----------------------------------------------------------------------------------
+
+query solutionArticleInformation($topicId: Int!) {
+  topic(id: $topicId) {
+    title
+    post {
+      author {
+        username
+      }
+    }
+  }
+}
+{"topicId": 3678229}
+-----------------------------------------------------------------------------------
+
+query prevNextSolution($topicId: Int!, $questionSlug: String!, $skip: Int!, $first: Int!, $query: String, $orderBy: TopicSortingOption, $languageTags: [String!], $topicTags: [String!]) {
+  prevSolution(
+    topicId: $topicId
+    filters: {questionSlug: $questionSlug, first: $first, skip: $skip, orderBy: $orderBy, query: $query, languageTags: $languageTags, topicTags: $topicTags}
+  ) {
+    id
+    title
+  }
+  nextSolution(
+    topicId: $topicId
+    filters: {questionSlug: $questionSlug, first: $first, skip: $skip, orderBy: $orderBy, query: $query, languageTags: $languageTags, topicTags: $topicTags}
+  ) {
+    id
+    title
+  }
+}
+{"query": "", "languageTags": [], "topicTags": [], "topicId": 3678229, "topicSlug": "", "questionSlug": "two-sum", "skip": 0, "first": 15, "orderBy": "hot"}
+-----------------------------------------------------------------------------------
+
+query intentionTags {
+  intentionTags {
+    name
+    slug
+  }
+}
+-----------------------------------------------------------------------------------
+
+query questionDiscussComments($topicId: Int!, $orderBy: String = "newest_to_oldest", $pageNo: Int = 1, $numPerPage: Int = 10) {
+  topicComments(
+    topicId: $topicId
+    orderBy: $orderBy
+    pageNo: $pageNo
+    numPerPage: $numPerPage
+  ) {
+    data {
+      id
+      pinned
+      pinnedBy {
+        username
+      }
+      post {
+        ...DiscussPost
+      }
+      intentionTag {
+        slug
+      }
+      numChildren
+    }
+    totalNum
+  }
+}
+    
+    fragment DiscussPost on PostNode {
+  id
+  voteCount
+  voteStatus
+  content
+  updationDate
+  creationDate
+  status
+  isHidden
+  coinRewards {
+    id
+    score
+    description
+    date
+  }
+  author {
+    isDiscussAdmin
+    isDiscussStaff
+    username
+    nameColor
+    activeBadge {
+      displayName
+      icon
+    }
+    profile {
+      userAvatar
+      reputation
+    }
+    isActive
+  }
+  authorIsModerator
+  isOwnPost
+}
+{"topicId": 3678229, "pageNo": 1, "numPerPage": 10, "orderBy": "best"}
 -----------------------------------------------------------------------------------
 
