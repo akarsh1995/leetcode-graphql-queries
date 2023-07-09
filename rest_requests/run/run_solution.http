@@ -1,0 +1,16 @@
+POST /problems/{<------problem-slug------>}/interpret_solution/ HTTP/1.1
+Host: leetcode.com
+User-Agent: curl/8.0.1
+Accept: */*
+content-type: application/json
+Origin: https://leetcode.com
+Referer: https://leetcode.com/problems/{<------problem-slug------>}/
+x-csrftoken: {<------csrftoken------>}
+Cookie: LEETCODE_SESSION={<------LEETCODE_SESSION------>}; csrftoken={<------csrftoken------>}
+
+{
+ "lang": "python3",
+ "question_id": "1",
+ "typed_code": "class Solution:\n    def twoSum(self, nums: List[int], target: int) -> List[int]:    return [4]",
+ "data_input": "[2,7,11,15]\n9\n[3,2,4]\n6\n[3,3]\n6"
+}

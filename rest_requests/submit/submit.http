@@ -1,0 +1,13 @@
+POST /problems/{<------problem-slug------>}/submit/ HTTP/1.1
+Host: leetcode.com
+Referer: https://leetcode.com/problems/{<------problem-slug------>}/
+content-type: application/json
+Origin: https://leetcode.com
+x-csrftoken: {<------csrftoken------>}
+Cookie: LEETCODE_SESSION={<------LEETCODE_SESSION------>}; csrftoken={<------csrftoken------>}
+
+{
+ "lang": "python3",
+ "question_id": "1",
+ "typed_code": "class Solution:\n    def twoSum(self, nums: List[int], target: int) -> List[int]:    return [1]"
+}

@@ -1,0 +1,6 @@
+GET /submissions/detail/{<------interpret-id(received upon running the solution)------>}/check/ HTTP/1.1
+Host: leetcode.com
+Referer: https://leetcode.com/problems/{<------problem-slug------>}/submissions
+content-type: application/json
+x-csrftoken: {<------csrftoken------>}
+Cookie: LEETCODE_SESSION={<------LEETCODE_SESSION------>}; csrftoken={<------csrftoken------>}

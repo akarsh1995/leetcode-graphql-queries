@@ -1,0 +1,197 @@
+{
+  "info": {
+    "_postman_id": "2185c377-6748-4961-afcb-41f632b8daca",
+    "name": "REST requests",
+    "description": "HAR To Postman Generated Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "28418829"
+  },
+  "item": [
+    {
+      "name": "Interpret Solution",
+      "item": [
+        {
+          "name": "Run Problem",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "content-type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-csrftoken",
+                "value": "{{csrftoken}}"
+              },
+              {
+                "key": "Origin",
+                "value": "https://leetcode.com"
+              },
+              {
+                "key": "Referer",
+                "value": "https://leetcode.com/problems/{{problemSlug}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n \"lang\": \"python3\",\n \"question_id\": \"1\",\n \"typed_code\": \"class Solution:\\n    def twoSum(self, nums: List[int], target: int) -> List[int]:    return [4]\",\n \"data_input\": \"[2,7,11,15]\\n9\\n[3,2,4]\\n6\\n[3,3]\\n6\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL1}}/problems/{{problemSlug}}/interpret_solution/",
+              "host": [
+                "{{baseURL1}}"
+              ],
+              "path": [
+                "problems",
+                "{{problemSlug}}",
+                "interpret_solution",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "https://leetcode.com/submissions/detail/{{interpret_id}}/check/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "https://leetcode.com/problems/{{problemSlug}}/submissions"
+              },
+              {
+                "key": "content-type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-csrftoken",
+                "value": "{{csrftoken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://leetcode.com/submissions/detail/{{interpret_id}}/check/",
+              "protocol": "https",
+              "host": [
+                "leetcode",
+                "com"
+              ],
+              "path": [
+                "submissions",
+                "detail",
+                "{{interpret_id}}",
+                "check",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Submit Solution",
+      "item": [
+        {
+          "name": "https://leetcode.com/submissions/detail/{{submissionId}}/check/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "https://leetcode.com/problems/{{problemSlug}}"
+              },
+              {
+                "key": "content-type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-csrftoken",
+                "value": "{{csrftoken}}"
+              }
+            ],
+            "url": {
+              "raw": "https://leetcode.com/submissions/detail/{{submissionId}}/check/",
+              "protocol": "https",
+              "host": [
+                "leetcode",
+                "com"
+              ],
+              "path": [
+                "submissions",
+                "detail",
+                "{{submissionId}}",
+                "check",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Submit Solution",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Host",
+                "value": "leetcode.com"
+              },
+              {
+                "key": "Referer",
+                "value": "https://leetcode.com/problems/{{problemSlug}}/"
+              },
+              {
+                "key": "content-type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-csrftoken",
+                "value": "{{csrftoken}}"
+              },
+              {
+                "key": "Origin",
+                "value": "https://leetcode.com"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n \"lang\": \"python3\",\n \"question_id\": \"1\",\n \"typed_code\": \"class Solution:\\n    def twoSum(self, nums: List[int], target: int) -> List[int]:    return [1]\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL1}}/problems/{{problemSlug}}/submit/",
+              "host": [
+                "{{baseURL1}}"
+              ],
+              "path": [
+                "problems",
+                "{{problemSlug}}",
+                "submit",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseURL1",
+      "value": "https://leetcode.com",
+      "type": "any"
+    }
+  ]
+}
