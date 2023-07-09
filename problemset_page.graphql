@@ -196,40 +196,12 @@ query upcOnboardingStatus {
 }
 -----------------------------------------------------------------------------------
 
-query globalData {
-  userStatus {
-    userId
-    isSignedIn
-    isMockUser
-    isPremium
-    isVerified
-    username
-    avatar
-    isAdmin
-    isSuperuser
-    permissions
-    isTranslator
-    activeSessionId
-    checkedInToday
-    notificationStatus {
-      lastModified
-      numUnread
-    }
-  }
-}
------------------------------------------------------------------------------------
-
 query getStreakCounter {
   streakCounter {
     streakCount
     daysSkipped
     currentDayCompleted
   }
-}
------------------------------------------------------------------------------------
-
-query currentTimestamp {
-  currentTimestamp
 }
 -----------------------------------------------------------------------------------
 
