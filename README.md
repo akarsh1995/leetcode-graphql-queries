@@ -2,7 +2,7 @@
 
 These leetcode GraphQL queries can help you get the various data from the leetcode's GraphQL endpoint.
 [https://leetcode.com/graphql](https://leetcode.com/graphql)
-
+![Postman Leetcode Collection Screenshot](./screenshots/postman_screenshot.png)
 
 ### Quickstart:
 
@@ -53,4 +53,3 @@ query problemsetQuestionList($categorySlug: String, $limit: Int, $skip: Int, $fi
 {"categorySlug": "", "skip": 0, "limit": 50, "filters": {}}
 ```
 
-![Postman Leetcode Collection Screenshot](./screenshots/postman_screenshot.png)
