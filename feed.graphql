@@ -1,0 +1,146 @@
+# logged in landing page : https://leetcode.com
+
+query globalData {
+  feature {
+    questionTranslation
+    subscription
+    signUp
+    discuss
+    mockInterview
+    contest
+    store
+    chinaProblemDiscuss
+    socialProviders
+    studentFooter
+    enableChannels
+    dangerZone
+    enableSharedWorker
+    enableRecaptchaV3
+    enableDebugger
+    enableDebuggerPremium
+    enableAutocomplete
+    enableAutocompletePremium
+    enableAllQuestionsRaw
+    autocompleteLanguages
+    enableIndiaPricing
+    enableReferralDiscount
+    maxTimeTravelTicketCount
+    enableStoreShippingForm
+    enableCodingChallengeV2
+    __typename
+  }
+  streakCounter {
+    streakCount
+    daysSkipped
+    currentDayCompleted
+    __typename
+  }
+  currentTimestamp
+  userStatus {
+    isSignedIn
+    isAdmin
+    isStaff
+    isSuperuser
+    isMockUser
+    isTranslator
+    isPremium
+    isVerified
+    checkedInToday
+    username
+    realName
+    avatar
+    optedIn
+    requestRegion
+    region
+    activeSessionId
+    permissions
+    notificationStatus {
+      lastModified
+      numUnread
+      __typename
+    }
+    completedFeatureGuides
+    __typename
+  }
+  siteRegion
+  chinaHost
+  websocketUrl
+  recaptchaKey
+  recaptchaKeyV2
+  sitewideAnnouncement
+  userCountryCode
+}
+-----------------------------------------------------------------------------------
+
+mutation checkin {
+  checkin {
+    checkedIn
+    ok
+    error
+    __typename
+  }
+}
+-----------------------------------------------------------------------------------
+
+query codingChallengeMedal($year: Int!, $month: Int!) {
+  dailyChallengeMedal(year: $year, month: $month) {
+    name
+    config {
+      icon
+      __typename
+    }
+    __typename
+  }
+  activeDailyCodingChallengeQuestion {
+    link
+    __typename
+  }
+}
+{"year": 2023, "month": 7}
+-----------------------------------------------------------------------------------
+
+query trendingDiscuss($first: Int!) {
+  cachedTrendingCategoryTopics(first: $first) {
+    id
+    title
+    post {
+      id
+      creationDate
+      contentPreview
+      author {
+        username
+        isActive
+        profile {
+          userAvatar
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}
+{"first": 10}
+-----------------------------------------------------------------------------------
+
+query getDidCompleteUpc {
+  didCompleteUpc
+  user {
+    joinedTimestamp
+    __typename
+  }
+}
+-----------------------------------------------------------------------------------
+
+query upcomingContests {
+  upcomingContests {
+    title
+    titleSlug
+    startTime
+    duration
+    __typename
+  }
+}
+-----------------------------------------------------------------------------------
+
