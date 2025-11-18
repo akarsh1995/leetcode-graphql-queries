@@ -276,3 +276,21 @@ query getUserProfile($username: String!) {
 {"username": "user8162l"}
 -----------------------------------------------------------------------------------
 
+query userProgressQuestionList($filters: UserProgressQuestionListInput) {
+  userProgressQuestionList(filters: $filters) {
+    totalNum
+    questions {
+      frontendId
+      title
+      difficulty
+      questionStatus
+    }
+  }
+}
+{
+  "filters": {
+    "skip": 0,
+    "limit": 10000
+  }
+}
+-----------------------------------------------------------------------------------
